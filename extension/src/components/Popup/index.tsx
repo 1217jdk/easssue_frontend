@@ -1,15 +1,15 @@
-import { FC, useEffect, useState } from 'react';
-import { PopupWordCloud } from './PopupWordCloudImg';
-import { PopupSummery } from './PopupSummary';
-import { popupApi } from '@/modules/api';
-import { PopupData } from './types';
-import Scrollbars from 'react-custom-scrollbars-2';
+import { FC, useEffect, useState } from "react";
+import { PopupWordCloud } from "./PopupWordCloudImg";
+import { PopupSummery } from "./PopupSummary";
+import { popupApi } from "@/modules/api";
+import { PopupData } from "./types";
+import Scrollbars from "react-custom-scrollbars-2";
 interface PopupIndexProps {}
 
 export const PopupIndex: FC<PopupIndexProps> = () => {
-  const [cloudImg, setCloudImg] = useState<string>('');
+  const [cloudImg, setCloudImg] = useState<string>("");
   const [summary, setSummary] = useState<string[]>([]);
-  const [thisTitle, setThisTitle] = useState<string>('');
+  const [thisTitle, setThisTitle] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [resultError, setResultError] = useState<boolean>(false);
   useEffect(() => {
@@ -26,10 +26,10 @@ export const PopupIndex: FC<PopupIndexProps> = () => {
     const getUrl = async () => {
       const url = (await getCurrentTab()).url;
       const title = (await getCurrentTab()).title;
-      setIsLoading(()=>true)
-      setResultError(()=>false)
-      if (title)setThisTitle(()=>title);
-      if (typeof url === 'string') {
+      setIsLoading(() => true);
+      setResultError(() => false);
+      if (title) setThisTitle(() => title);
+      if (typeof url === "string") {
         const data: PopupData = await popupApi(url);
         if (!data.error) {
           setCloudImg(() => data.cloud);

@@ -1,23 +1,23 @@
-import React, { useState, useCallback, FunctionComponent } from 'react';
-import { signUp, checkDuplicateEmail } from '@/modules/api';
-import { signUpAndSetToken } from '@/modules/auth';
-import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '@/modules/store';
+import React, { useState, useCallback, FunctionComponent } from "react";
+import { signUp, checkDuplicateEmail } from "@/modules/api";
+import { signUpAndSetToken } from "@/modules/auth";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/modules/store";
 
 interface SignUpProps {
   stateChange: Function;
 }
 
 const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
-  const dispatch = useDispatch<AppDispatch>(); 
-  const [email, setEmail] = useState<string>('');
-  const [pwd, setPassword] = useState<string>('');
-  const [passwordConfirm, setPasswordConfirm] = useState<string>('');
+  const dispatch = useDispatch<AppDispatch>();
+  const [email, setEmail] = useState<string>("");
+  const [pwd, setPassword] = useState<string>("");
+  const [passwordConfirm, setPasswordConfirm] = useState<string>("");
 
-  const [emailMessage, setEmailMessage] = useState<string>('');
-  const [passwordMessage, setPasswordMessage] = useState<string>('');
+  const [emailMessage, setEmailMessage] = useState<string>("");
+  const [passwordMessage, setPasswordMessage] = useState<string>("");
   const [passwordConfirmMessage, setPasswordConfirmMessage] =
-    useState<string>('');
+    useState<string>("");
 
   const [isEmail, setIsEmail] = useState<boolean>(false);
   const [emailDuplicate, setEmailDuplicate] = useState<boolean>(true);
@@ -38,14 +38,14 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
       setEmail(emailCurrent);
 
       if (!emailRegex.test(emailCurrent)) {
-        setEmailMessage('이메일 형식이 틀렸어요! 다시 확인해주세요 ㅜ ㅜ');
+        setEmailMessage("이메일 형식이 틀렸어요! 다시 확인해주세요 ㅜ ㅜ");
         setEmailCheckState(false);
         setIsEmail(false);
       } else {
         setIsEmail(true);
         setEmailCheckState(false);
         setEmailDuplicate(true);
-        setEmailMessage('이메일 중복 확인이 필요해요!');
+        setEmailMessage("이메일 중복 확인이 필요해요!");
       }
     },
     []
@@ -61,11 +61,11 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
 
       if (!passwordRegex.test(passwordCurrent)) {
         setPasswordMessage(
-          '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!'
+          "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!"
         );
         setIsPassword(false);
       } else {
-        setPasswordMessage('안전한 비밀번호에요 : )');
+        setPasswordMessage("안전한 비밀번호에요 : )");
         setIsPassword(true);
       }
     },
@@ -79,10 +79,10 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
       setPasswordConfirm(passwordConfirmCurrent);
 
       if (pwd === passwordConfirmCurrent) {
-        setPasswordConfirmMessage('비밀번호를 똑같이 입력했어요 : )');
+        setPasswordConfirmMessage("비밀번호를 똑같이 입력했어요 : )");
         setIsPasswordConfirm(true);
       } else {
-        setPasswordConfirmMessage('비밀번호가 틀려요. 다시 확인해주세요 ㅜ ㅜ');
+        setPasswordConfirmMessage("비밀번호가 틀려요. 다시 확인해주세요 ㅜ ㅜ");
         setIsPasswordConfirm(false);
       }
     },
@@ -91,17 +91,17 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(signUpAndSetToken({email,pwd,}))
+    dispatch(signUpAndSetToken({ email, pwd }));
   };
 
   const checkEmail = async (currentEmail: string) => {
     const status = await checkDuplicateEmail(currentEmail);
     if (status === true) {
       setEmailCheckState(true);
-      setEmailMessage('이메일 인증이 완료되었습니다 : )');
+      setEmailMessage("이메일 인증이 완료되었습니다 : )");
       setEmailDuplicate(false);
     } else {
-      setEmailMessage('이미 가입된 이메일이에요 .. 다시한번 확인해 주세요!');
+      setEmailMessage("이미 가입된 이메일이에요 .. 다시한번 확인해 주세요!");
       setEmailDuplicate(true);
       setEmailCheckState(false);
     }
@@ -127,8 +127,8 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
                     type="text"
                     className={`my-2 block w-full rounded border p-3  ${
                       isEmailBlur
-                        ? 'border-stone-200'
-                        : `${isEmail ? 'border-green-600' : 'border-red-500'}`
+                        ? "border-stone-200"
+                        : `${isEmail ? "border-green-600" : "border-red-500"}`
                     }`}
                     name="email"
                     placeholder="이메일"
@@ -142,11 +142,11 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
                       <span
                         className={`text-[0.7rem] ${
                           isEmail && !emailDuplicate && emailCheckState
-                            ? 'text-blue-400'
-                            : 'text-gray-500'
+                            ? "text-blue-400"
+                            : "text-gray-500"
                         }`}
                       >
-                        {emailMessage}{' '}
+                        {emailMessage}{" "}
                       </span>
                     )}
                     {isEmail && emailDuplicate ? (
@@ -159,7 +159,7 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
                         이메일 중복 확인하기
                       </span>
                     ) : (
-                      ''
+                      ""
                     )}
                   </div>
 
@@ -169,9 +169,9 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
                     type="password"
                     className={`my-2 block w-full rounded border p-3  ${
                       isPasswordBlur
-                        ? 'border-stone-200'
+                        ? "border-stone-200"
                         : `${
-                            isPassword ? 'border-green-600' : 'border-red-500'
+                            isPassword ? "border-green-600" : "border-red-500"
                           }`
                     }`}
                     name="pwd"
@@ -181,7 +181,7 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
                   {pwd.length > 0 && (
                     <span
                       className={`text-[0.7rem] ${
-                        isPassword ? 'text-blue-400' : 'text-gray-500'
+                        isPassword ? "text-blue-400" : "text-gray-500"
                       }`}
                     >
                       {passwordMessage}
@@ -193,11 +193,11 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
                     type="password"
                     className={`my-2 block w-full rounded border p-3  ${
                       isPasswordConfirmBlur
-                        ? 'border-stone-200'
+                        ? "border-stone-200"
                         : `${
                             isPasswordConfirm
-                              ? 'border-green-600'
-                              : 'border-red-500'
+                              ? "border-green-600"
+                              : "border-red-500"
                           }`
                     }`}
                     name="confirm_password"
@@ -207,7 +207,7 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
                   {passwordConfirm.length > 0 && (
                     <span
                       className={`text-[0.7rem] ${
-                        isPasswordConfirm ? 'text-blue-400' : 'text-gray-500'
+                        isPasswordConfirm ? "text-blue-400" : "text-gray-500"
                       }`}
                     >
                       {passwordConfirmMessage}
@@ -224,8 +224,8 @@ const SignUp: FunctionComponent<SignUpProps> = ({ stateChange }) => {
                         isPasswordConfirm &&
                         emailCheckState
                       )
-                        ? 'bg-gray-400'
-                        : 'bg-blue-500'
+                        ? "bg-gray-400"
+                        : "bg-blue-500"
                     } py-2.5 text-center text-white focus:outline-none`}
                     disabled={
                       !(

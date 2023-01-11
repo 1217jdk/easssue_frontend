@@ -2,18 +2,23 @@ import { useEffect, useState, FC } from "react";
 import { NewsCard } from "../NewsCard";
 import { KeywordBar } from "../KeywordBar";
 import { RelatedKeywordBar } from "../RelatedKeywordBar";
-import { getNews, getKeyWordNews, getRecommendNews, getRecommendKeywords } from "@/modules/api";
+import {
+  getNews,
+  getKeyWordNews,
+  getRecommendNews,
+  getRecommendKeywords,
+} from "@/modules/api";
 import { newsBoardProps, newsResponse } from "./types";
 import { useSelector } from "react-redux";
 import { RootState } from "@/modules/store";
-export const NewsBoard: FC<newsBoardProps> = ({setKeywordModalOpen}) => {
+export const NewsBoard: FC<newsBoardProps> = ({ setKeywordModalOpen }) => {
   const [subSelect, setSubSelect] = useState(-1);
   const [relSelect, setRelSelect] = useState(-1);
   const [keywordTitle, setKeywordTitle] = useState("인기 & 추천");
   const [keywordId, setKeywordId] = useState(-1);
   const [pageNum, setPageNum] = useState(0);
-  const [relList, setRelList] = useState([{ kwdName :"인기"}]);
-  const [recommendList, setRecommendList] = useState([{ kwdName :"인기"}]);
+  const [relList, setRelList] = useState([{ kwdName: "인기" }]);
+  const [recommendList, setRecommendList] = useState([{ kwdName: "인기" }]);
   const [newsObject, setNewsObject] = useState<newsResponse>({
     page: 0,
     last: false,
@@ -28,90 +33,82 @@ export const NewsBoard: FC<newsBoardProps> = ({setKeywordModalOpen}) => {
   });
   useEffect(() => {
     getNews(0).then((data) => {
-      getRecommendKeywords().then((data:any) => {
-        setRelList(data.kwdList)
-        setRecommendList(data.kwdList)
-        }
-      )
+      getRecommendKeywords().then((data: any) => {
+        setRelList(data.kwdList);
+        setRecommendList(data.kwdList);
+      });
       setNewsObject(data);
     });
   }, []);
   useEffect(() => {
-    setPageNum(0)
-    fetchArticle(0)
+    setPageNum(0);
+    fetchArticle(0);
   }, [keywordTitle]);
   useEffect(() => {
-    setPageNum(0)
-    fetchRelArticle(0)
-  }, [relSelect])
+    setPageNum(0);
+    fetchRelArticle(0);
+  }, [relSelect]);
   useEffect(() => {
-    if(relSelect === -1){
-      fetchArticle(pageNum)
+    if (relSelect === -1) {
+      fetchArticle(pageNum);
+    } else {
+      fetchRelArticle(pageNum);
     }
-    else {
-      fetchRelArticle(pageNum)
-    }
-  }, [pageNum])
-  useEffect(() => {
-  },[relList])
+  }, [pageNum]);
   const onPageClick = () => {
-    setPageNum((pageNum + 1) % 10)
-
-  }
-  const fetchArticle = (pageNum:number) => {
-    if(subSelect === -1) {
+    setPageNum((pageNum + 1) % 10);
+  };
+  const fetchArticle = (pageNum: number) => {
+    if (subSelect === -1) {
       getNews(pageNum).then((data) => {
         if (data.newsList.length === 0) {
-          setPageNum(0)
+          setPageNum(0);
         }
-        if (recommendList.length > 1){
-          setRelList(recommendList)
+        if (recommendList.length > 1) {
+          setRelList(recommendList);
         }
         setNewsObject(data);
-        setRelSelect(-1)
+        setRelSelect(-1);
       });
-    }
-    else {
+    } else {
       getKeyWordNews(subSelect, pageNum).then((data) => {
         if (data.newsList.length === 0) {
-          setPageNum(0)
+          setPageNum(0);
         }
         setNewsObject(data);
-        setRelList(data.kwdList)
-        setRelSelect(-1)
+        setRelList(data.kwdList);
+        setRelSelect(-1);
       });
     }
-  }
+  };
 
-  const fetchRelArticle = (pageNum:number) => {
-    if(relSelect === -1) {
-      if(subSelect === -1) {
+  const fetchRelArticle = (pageNum: number) => {
+    if (relSelect === -1) {
+      if (subSelect === -1) {
         getNews(pageNum).then((data) => {
           if (data.newsList.length === 0) {
-            setPageNum(0)
+            setPageNum(0);
           }
           setNewsObject(data);
-          setRelSelect(-1)
+          setRelSelect(-1);
         });
-      }
-      else {
+      } else {
         getKeyWordNews(subSelect, pageNum).then((data) => {
           if (data.newsList.length === 0) {
-            setPageNum(0)
+            setPageNum(0);
           }
           setNewsObject(data);
         });
-      } 
-    }
-    else {
+      }
+    } else {
       getRecommendNews(relSelect, pageNum).then((data) => {
         if (data.newsList.length === 0) {
-          setPageNum(0)
+          setPageNum(0);
         }
         setNewsObject(data);
       });
     }
-  }
+  };
   return (
     <div>
       <KeywordBar
@@ -131,8 +128,12 @@ export const NewsBoard: FC<newsBoardProps> = ({setKeywordModalOpen}) => {
             setRelSelect={setRelSelect}
           />
           <button className="mx-2 absolute top-4 right-2" onClick={onPageClick}>
-          <img className="m-auto" style={{width: 28, height: 28}} src="refresh.svg" />
-        </button>
+            <img
+              className="m-auto"
+              style={{ width: 28, height: 28 }}
+              src="refresh.svg"
+            />
+          </button>
         </div>
         <div className="grid grid-cols-3 gap-4">
           {newsObject.newsList.map((list, index) => {

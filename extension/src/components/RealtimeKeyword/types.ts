@@ -8,7 +8,7 @@ type keyword = {
   ctgr_cd: string;
   count: number;
   score: number;
-}
+};
 export interface KeywordResponse {
-  [k : number]: keyword;
+  [k: number]: keyword;
 }

@@ -1,4 +1,4 @@
 export interface BookmarkProps {
   setBookmarkModalOpen: Function;
-  bookmarkTree: chrome.bookmarks.BookmarkTreeNode[]
+  bookmarkTree: chrome.bookmarks.BookmarkTreeNode[];
 }

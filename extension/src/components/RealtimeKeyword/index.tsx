@@ -20,7 +20,7 @@ export const RealtimeKeyword = () => {
     autoplay: true,
     speed: 1500,
     autoplaySpeed: 4000,
-    pauseOnHover: false
+    pauseOnHover: false,
   };
 
   useEffect(() => {
@@ -30,10 +30,10 @@ export const RealtimeKeyword = () => {
   }, []);
 
   return (
-    <div className="max-w-[360px]" style={{width: 'calc(100% - 32px)'}}>
+    <div className="max-w-[360px]" style={{ width: "calc(100% - 32px)" }}>
       <div
         className="xl:p-2 bg-black/25 rounded-t-xl ml-8"
-        style={{ borderRadius: !isHovering ? "0.75rem" : ""}}
+        style={{ borderRadius: !isHovering ? "0.75rem" : "" }}
         onMouseOver={() => setIsHovering(1)}
         onMouseLeave={() => setIsHovering(0)}
       >
@@ -55,7 +55,10 @@ export const RealtimeKeyword = () => {
       </div>
       <div
         className="ml-8 p-2 bg-black/25 rounded-b-xl"
-        style={{ display: !isHovering ? "none" : "block", width: 'calc(100% - 32px)'}}
+        style={{
+          display: !isHovering ? "none" : "block",
+          width: "calc(100% - 32px)",
+        }}
         onMouseOver={() => setIsHovering(1)}
         onMouseLeave={() => setIsHovering(0)}
       >

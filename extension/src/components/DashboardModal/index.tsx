@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { DashboardModalProps } from './types';
-import { DashIndex } from '@/components/Modals/DashBoard';
-import SingUpComponent from '@/components/user/Signup';
-import LoginComponent from '@/components/user/Login';
+import React, { useState } from "react";
+import { DashboardModalProps } from "./types";
+import { DashIndex } from "@/components/Modals/DashBoard";
+import SingUpComponent from "@/components/user/Signup";
+import LoginComponent from "@/components/user/Login";
 
 export const DashboardModal: React.FC<DashboardModalProps> = ({
   setDashboardModalOpen,

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from "react";
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -7,10 +7,10 @@ import {
   Filler,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { RadarController } from 'chart.js';
-import { Radar } from 'react-chartjs-2';
-import type { GraphDataType } from './types';
+} from "chart.js";
+import { RadarController } from "chart.js";
+import { Radar } from "react-chartjs-2";
+import type { GraphDataType } from "./types";
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip);
 
@@ -20,13 +20,13 @@ export const RadarChart: FC<GraphDataType> = ({ labels, data }) => {
     labels,
     datasets: [
       {
-        label: '읽은 기사의 수',
+        label: "읽은 기사의 수",
         data,
-        backgroundColor: 'rgba(72,122,182, 0.5)',
-        borderColor: 'navy',
+        backgroundColor: "rgba(72,122,182, 0.5)",
+        borderColor: "navy",
         borderWidth: 1,
-        pointBackgroundColor:'bg-blue-200',
-        lineTension:0.2,
+        pointBackgroundColor: "bg-blue-200",
+        lineTension: 0.2,
         min: 0,
       },
     ],
@@ -38,7 +38,6 @@ export const RadarChart: FC<GraphDataType> = ({ labels, data }) => {
       },
     },
     scales: {
-
       r: {
         angleLines: {
           display: false,
@@ -48,43 +47,42 @@ export const RadarChart: FC<GraphDataType> = ({ labels, data }) => {
         pointLabels: {
           // color: 'white', // 라벨의 글씨 색상
           font: {
-            family: 'Pretendard-Regular',
-            size : 13
+            family: "Pretendard-Regular",
+            size: 13,
           },
         },
         grid: {
           // color: 'black', // 거미줄 중간 중간 선 색상
           // color:'rgba(0,0,0,0)'
           // borderDash : [15, 30],
-          circular : true
+          circular: true,
         },
         ticks: {
           beginAtZero: true,
-          stepSize:40,
-          color: 'white',
+          stepSize: 40,
+          color: "white",
           showLabelBackdrop: false, // hide square behind text // 이부분이 숫자 label의 배경 부분.
           font: {
-            family: 'Pretendard-Regular',
+            family: "Pretendard-Regular",
           },
 
-          display: false
+          display: false,
         },
       },
-      
     },
-    plugins : {
-      legend :{
-        labels :{
-          font:{
-            size: 100
-          }
-        }
-      }
-    }
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: 100,
+          },
+        },
+      },
+    },
   };
   return (
     <>
-      <Radar data={dataset} style={{ height: '' }} options={options} />
+      <Radar data={dataset} style={{ height: "" }} options={options} />
     </>
   );
 };

@@ -1,23 +1,24 @@
-import { AppDispatch, RootState } from '@/modules/store';
-import { FC, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { AppDispatch, RootState } from "@/modules/store";
+import { FC, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {
   removeKeyword,
   endDropChangeList,
   getSubscribeKeywordsRedux,
-} from '@modules/keyWordReducer';
-import Scrollbars from 'react-custom-scrollbars-2';
+} from "@modules/keyWordReducer";
+import Scrollbars from "react-custom-scrollbars-2";
 const UserKeyword: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(getSubscribeKeywordsRedux());
   }, []);
-  const {subScribeKwdList, subKeyLength} = useSelector((state: RootState) => {
+  const { subScribeKwdList, subKeyLength } = useSelector((state: RootState) => {
     // console.log(state);
-    return {subScribeKwdList : state.persistedReducer.keyWordReducer.subScribeKwdList,
-      subKeyLength : state.persistedReducer.keyWordReducer.subKeyLength
-    }
+    return {
+      subScribeKwdList: state.persistedReducer.keyWordReducer.subScribeKwdList,
+      subKeyLength: state.persistedReducer.keyWordReducer.subKeyLength,
+    };
   });
   // console.log('kwdList:', subScribeKwdList);
   const removeKeywordButton = (keywordId: number) => {
@@ -25,7 +26,13 @@ const UserKeyword: FC = () => {
   };
   return (
     <div className="w-[60%]">
-      <div className="ml-2 mb-3 text-2xl font-bold"> {'구독중인 키워드'}<span className={`${subKeyLength === 15 ? 'text-red-500' : ''}`}>{` (${subKeyLength}/15)`}</span></div>
+      <div className="ml-2 mb-3 text-2xl font-bold">
+        {" "}
+        {"구독중인 키워드"}
+        <span
+          className={`${subKeyLength === 15 ? "text-red-500" : ""}`}
+        >{` (${subKeyLength}/15)`}</span>
+      </div>
       <DragDropContext
         onDragEnd={(dndResult) => dispatch(endDropChangeList(dndResult))}
       >
@@ -36,7 +43,7 @@ const UserKeyword: FC = () => {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {' '}
+              {" "}
               <Scrollbars
                 autoHideTimeout={1000}
                 autoHideDuration={200}
@@ -77,7 +84,13 @@ const UserKeyword: FC = () => {
                                     removeKeywordButton(keyword.kwdId)
                                   }
                                   className="h-[100%]"
-                                ><img className='w-4 h-4' src="itemDelete.svg" alt="" /></span>
+                                >
+                                  <img
+                                    className="w-4 h-4"
+                                    src="itemDelete.svg"
+                                    alt=""
+                                  />
+                                </span>
                               </div>
                             </div>
                           </div>

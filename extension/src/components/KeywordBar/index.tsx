@@ -7,11 +7,11 @@ export const KeywordBar: React.FC<KeywordBarProps> = ({
   setSubSelect,
   setKeywordTitle,
   setKeywordId,
-  setKeywordModalOpen
+  setKeywordModalOpen,
 }) => {
   const onKeywordClick = () => {
-    setKeywordModalOpen(true)
-  }
+    setKeywordModalOpen(true);
+  };
   return (
     <div className="grid grid-cols-8">
       {keywordList.map(
@@ -31,11 +31,14 @@ export const KeywordBar: React.FC<KeywordBarProps> = ({
         }
       )}
       <div className="m-2 justify-self-center">
-      <button className="flex w-full rounded-full p-1 bg-black/25 h-[36px] justify-center items-center" onClick={onKeywordClick}>
-        <button className="mx-2"  >
-          <img src="kwd_add.svg" style={{width: 16, height: 16}} alt="" />
+        <button
+          className="flex w-full rounded-full p-1 bg-black/25 h-[36px] justify-center items-center"
+          onClick={onKeywordClick}
+        >
+          <button className="mx-2">
+            <img src="kwd_add.svg" style={{ width: 16, height: 16 }} alt="" />
+          </button>
         </button>
-      </button>   
       </div>
     </div>
   );

@@ -1,12 +1,12 @@
-import { FC, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { FC, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   removeBanKeyword,
   endDropChangeList,
   getBanKeywordsRedux,
-} from '@modules/keyWordReducer';
-import Scrollbars from 'react-custom-scrollbars-2';
-import { AppDispatch, RootState } from '@/modules/store';
+} from "@modules/keyWordReducer";
+import Scrollbars from "react-custom-scrollbars-2";
+import { AppDispatch, RootState } from "@/modules/store";
 
 const UserBanKeyWordList: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,11 +21,11 @@ const UserBanKeyWordList: FC = () => {
   };
   return (
     <div className="w-[60%]">
-      <div className="text-xl font-bold"> {'금지중인 키워드'}</div>
+      <div className="text-xl font-bold"> {"금지중인 키워드"}</div>
 
       {
         <ul className="w-[100%] h-[95%] overflow-auto">
-          {' '}
+          {" "}
           <Scrollbars
             autoHideTimeout={1000}
             autoHideDuration={200}

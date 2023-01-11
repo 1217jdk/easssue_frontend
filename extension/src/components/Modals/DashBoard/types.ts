@@ -6,14 +6,14 @@ export type grassValues = {
 };
 
 export type GraphDataType = {
-  labels : graphLabels;
-  data : graphData;
-}
+  labels: graphLabels;
+  data: graphData;
+};
 
 export interface GrassType {
-  startDate : string;
-  endDate : string;
-  values :  grassValues | [] | any;
+  startDate: string;
+  endDate: string;
+  values: grassValues | [] | any;
 }
 export interface DashInfo {
   graph: GraphDataType;

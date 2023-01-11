@@ -1,19 +1,19 @@
-import React, { FC, useMemo, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { debounce } from 'lodash';
-import { addKeyword, addBanKeyword, keyword } from '@modules/keyWordReducer';
-import { searchKeyword } from '@/modules/api';
-import Scrollbars from 'react-custom-scrollbars-2';
-import { ModeProps } from '@/components/KeywordModal/types';
-const KeyInput: FC<ModeProps> = ({mode}) => {
-  const [inputKeyword, setInputKeyword] = useState<string>('');
+import React, { FC, useMemo, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { debounce } from "lodash";
+import { addKeyword, addBanKeyword, keyword } from "@modules/keyWordReducer";
+import { searchKeyword } from "@/modules/api";
+import Scrollbars from "react-custom-scrollbars-2";
+import { ModeProps } from "@/components/KeywordModal/types";
+const KeyInput: FC<ModeProps> = ({ mode }) => {
+  const [inputKeyword, setInputKeyword] = useState<string>("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     debounceSearch(e.target.value);
   };
   const [searchResult, setSearchResult] = useState<keyword[]>();
 
   useEffect(() => {
-    if (inputKeyword !== '') {
+    if (inputKeyword !== "") {
       const getSearchResult = async () => {
         await new Promise(async (resolve, reject) => {
           const res = await searchKeyword(inputKeyword);
@@ -36,14 +36,14 @@ const KeyInput: FC<ModeProps> = ({mode}) => {
 
   const dispatch = useDispatch();
   const addKeywordButton = (kwdId: number, kwdName: string) => {
-    if(mode){
+    if (mode) {
       dispatch(
         addBanKeyword({
           kwdId,
           kwdName,
         })
       );
-    }else{
+    } else {
       dispatch(
         addKeyword({
           kwdId,
@@ -56,7 +56,7 @@ const KeyInput: FC<ModeProps> = ({mode}) => {
   return (
     <>
       <div className="w-[60%] pr-2 mr-3 border-r-2">
-        <div className="mb-3 text-2xl font-bold">{'키워드 검색하기'}</div>
+        <div className="mb-3 text-2xl font-bold">{"키워드 검색하기"}</div>
         {/* <input
           className="w-[100%] m-0 border-blue-300 border-2"
           type="text"
@@ -86,7 +86,7 @@ const KeyInput: FC<ModeProps> = ({mode}) => {
             id="default-search"
             className="block ml-2 p-3 pl-10 w-[95%] text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChange}
-            placeholder={'키워드를 입력하세요 :)'}
+            placeholder={"키워드를 입력하세요 :)"}
           />
         </div>
         <ul className="h-[77%] pt-2 overflow-auto w-[100%]">

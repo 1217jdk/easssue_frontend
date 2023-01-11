@@ -1,30 +1,30 @@
-import { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import type { RootState, AppDispatch } from '@modules/store'
-import { login } from '@/modules/api';
-import { loginAndSetToken } from '@modules/auth'
+import { FC, useState } from "react";
+import { useDispatch } from "react-redux";
+import type { RootState, AppDispatch } from "@modules/store";
+import { login } from "@/modules/api";
+import { loginAndSetToken } from "@modules/auth";
 
 export interface LoginReq {
-  email :string,
-  pwd : string
+  email: string;
+  pwd: string;
 }
 interface loginState {
-  stateChange : Function;
+  stateChange: Function;
 }
 
-const LogIn: FC<loginState> = ({stateChange}) => {
+const LogIn: FC<loginState> = ({ stateChange }) => {
   const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const logInFormData = new FormData(e.currentTarget);
     const logInform: LoginReq = {
-      email: logInFormData.get('email') as string,
-      pwd: logInFormData.get('password') as string,
+      email: logInFormData.get("email") as string,
+      pwd: logInFormData.get("password") as string,
     };
-    const logInRes = await dispatch(loginAndSetToken(logInform)).unwrap()
+    const logInRes = await dispatch(loginAndSetToken(logInform)).unwrap();
 
     if (!logInRes.status) {
-      alert('실패 : 이메일과 비밀번호를 확인해 주세요');
+      alert("실패 : 이메일과 비밀번호를 확인해 주세요");
     }
   };
   return (
@@ -34,11 +34,7 @@ const LogIn: FC<loginState> = ({stateChange}) => {
           <div className="w-full rounded-lg bg-white dark:border dark:border-gray-700 dark:bg-gray-800 sm:max-w-md md:mt-0 xl:p-0">
             <div className="space-y-4 p-6 sm:p-8 md:space-y-6">
               <div>
-                <img
-                  src="biglogo.png"
-                  alt=""
-                  className="h-14 w-14"
-                />
+                <img src="biglogo.png" alt="" className="h-14 w-14" />
               </div>
               <h1 className="text-xl leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
                 로그인
@@ -84,8 +80,13 @@ const LogIn: FC<loginState> = ({stateChange}) => {
                 </button>
               </form>
               <div className="pt-4 text-center font-light text-gray-500 dark:text-gray-400">
-                아직 회원이 아니신가요?{' '}
-                <span onClick={()=>{stateChange()}} className="hover:cursor-pointer font-medium text-blue-500">
+                아직 회원이 아니신가요?{" "}
+                <span
+                  onClick={() => {
+                    stateChange();
+                  }}
+                  className="hover:cursor-pointer font-medium text-blue-500"
+                >
                   회원가입하기
                 </span>
               </div>

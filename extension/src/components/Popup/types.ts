@@ -1,5 +1,5 @@
 export interface PopupData {
-  error: boolean,
-  cloud: string,
-  summary: string[]
+  error: boolean;
+  cloud: string;
+  summary: string[];
 }

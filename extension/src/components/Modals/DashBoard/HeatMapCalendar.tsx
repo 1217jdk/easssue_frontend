@@ -1,10 +1,10 @@
-import { FC, useState, useEffect } from 'react';
-import ReactCalendarHeatmap from 'react-calendar-heatmap';
-import { CalendarHistory } from './CalendarHistory';
-import 'react-calendar-heatmap/dist/styles.css';
-import { GrassType } from './types';
-import { getNewsHistory } from '@modules/api';
-import Scrollbars from 'react-custom-scrollbars-2';
+import { FC, useState, useEffect } from "react";
+import ReactCalendarHeatmap from "react-calendar-heatmap";
+import { CalendarHistory } from "./CalendarHistory";
+import "react-calendar-heatmap/dist/styles.css";
+import { GrassType } from "./types";
+import { getNewsHistory } from "@modules/api";
+import Scrollbars from "react-custom-scrollbars-2";
 
 export interface News {
   category: string;
@@ -16,7 +16,7 @@ const HeatMapCalendar: FC<GrassType> = ({ startDate, endDate, values }) => {
   // const startDateNewFormat = startDate.getFullYear() + '-' + `${startDate.getMonth() + 1}` + '-' + startDate.getDate();
   // const endDateNewFormat = now.getFullYear() + '-' + `${now.getMonth() + 1}` + '-' + now.getDate();
   const [newsList, setNewsList] = useState<NewsList>([]);
-  const [clickedDate, setClickedDate] = useState<string>('');
+  const [clickedDate, setClickedDate] = useState<string>("");
   useEffect(() => {
     const getNewsHistoryApi = async () => {
       const now = new Date();
@@ -26,7 +26,7 @@ const HeatMapCalendar: FC<GrassType> = ({ startDate, endDate, values }) => {
       const korDate =
         `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${
           now.getDate() < 10 ? `0${now.getDate()}` : now.getDate()
-        }` + '일';
+        }` + "일";
       const data = await getNewsHistory(getToday);
       // console.log(data, korDate);
       setClickedDate(() => korDate);
@@ -49,11 +49,11 @@ const HeatMapCalendar: FC<GrassType> = ({ startDate, endDate, values }) => {
     const data = await getNewsHistory(fullDate);
     // console.log('getNewsHistoryFromDate:', data);
     if (data !== null) {
-      const splitDate = fullDate.split('-');
-      const korDate = `${splitDate[0]}년 ${splitDate[1]}월 ${splitDate[2]}일`
+      const splitDate = fullDate.split("-");
+      const korDate = `${splitDate[0]}년 ${splitDate[1]}월 ${splitDate[2]}일`;
       setNewsList(() => data.newsList);
       // console.log('korDate:', korDate);
-      setClickedDate(() =>korDate);
+      setClickedDate(() => korDate);
     }
   };
   return (
@@ -70,7 +70,7 @@ const HeatMapCalendar: FC<GrassType> = ({ startDate, endDate, values }) => {
           }}
           classForValue={(value) => {
             if (!value) {
-              return 'color-empty';
+              return "color-empty";
             } else if (value.count >= 10) {
               return `color-gitlab-4`;
             } else if (value.count >= 6) {
@@ -85,29 +85,27 @@ const HeatMapCalendar: FC<GrassType> = ({ startDate, endDate, values }) => {
           // titleForValue={(value) => `Date is ${value}`}
           // showOutOfRangeDays={true}
           monthLabels={[
-            '1월',
-            '2월',
-            '3월',
-            '4월',
-            '5월',
-            '6월',
-            '7월',
-            '8월',
-            '9월',
-            '10월',
-            '11월',
-            '12월',
+            "1월",
+            "2월",
+            "3월",
+            "4월",
+            "5월",
+            "6월",
+            "7월",
+            "8월",
+            "9월",
+            "10월",
+            "11월",
+            "12월",
           ]}
           tooltipDataAttrs={(somevlaue: { date: string } | null) => {
-            return { 'data-tooltip': somevlaue?.date };
+            return { "data-tooltip": somevlaue?.date };
           }}
           values={values}
         />
       </div>
       <div className="h-[75%] w-[100%]">
-        <span className=" ml-[4rem] mb-5 mr-1 text-lg">
-          {clickedDate}
-        </span>
+        <span className=" ml-[4rem] mb-5 mr-1 text-lg">{clickedDate}</span>
         <ul className="border-l-2 mt-1 ml-5 h-[100%] w-[100%] overflow-auto">
           <Scrollbars
             autoHideTimeout={1000}
