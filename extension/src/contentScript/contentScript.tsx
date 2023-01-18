@@ -27,7 +27,7 @@ const App: React.FC<{}> = () => {
   )
 }
 const fr = new DocumentFragment
-const container = document.querySelector(".gb_Ld") || fr
+const container = document.querySelector(".gb_Od") || fr
 const container2 = document.querySelector("#NM_WEATHER") || fr
 const container3 = document.querySelector(".lnb_group") || fr
 const child = document.createElement("div")
