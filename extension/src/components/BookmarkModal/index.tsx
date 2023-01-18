@@ -18,10 +18,10 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
     });
     setBookmarkModalOpen(false);
   };
-  const onChangeName = (e: any) => {
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBookmarkName(e.target.value);
   };
-  const onChangeURL = (e: any) => {
+  const onChangeURL = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBookmarkURL(e.target.value);
   };
   return (
