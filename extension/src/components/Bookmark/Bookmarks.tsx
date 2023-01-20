@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { FC } from "react";
 import { BookmarkProps } from "./types";
-export const Bookmarks: React.FC<BookmarkProps> = ({
+export const Bookmarks: FC<BookmarkProps> = ({
   setBookmarkModalOpen,
   bookmarkTree,
 }) => {

@@ -1,12 +1,10 @@
 import React from "react";
+import { ContainerProps } from './types';
 
-type ContainerProps = {
-  children: React.ReactNode;
-};
-export const BookmarkContainer: React.FC<ContainerProps> = (ContainerProps) => {
+export const BookmarkContainer: React.FC<ContainerProps> = ({children}) => {
   return (
     <div className="bg-black/25 p-4 rounded-lg m-2 mb-8">
-      <div className="grid grid-cols-10 gap-4">{ContainerProps.children}</div>
+      <div className="grid grid-cols-10 gap-4">{children}</div>
     </div>
   );
 };
