@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { BookmarkProps } from "./types";
-export const BookmarkAdd: FC<BookmarkProps> = ({
-  setBookmarkModalOpen,
-  bookmarkTree,
+import { BookmarkAddProps } from "./types";
+export const BookmarkAdd: FC<BookmarkAddProps> = ({
+  setBookmarkModalOpen
 }) => {
   const onCreateClick = () => {
     setBookmarkModalOpen(true);
