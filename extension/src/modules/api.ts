@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { method } from 'lodash';
 
 export const BASE_URL = 'https://www.easssue.com/api';
 
