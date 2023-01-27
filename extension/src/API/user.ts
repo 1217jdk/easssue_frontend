@@ -1,16 +1,16 @@
 import { api } from './api.common';
 import type { UserAuthInput } from './types';
-const USER_API_URL = '/users/';
+const USER_API_URL = '/users';
 
 /**
  * * login
  * @param {string} email
- * @param {string} pwd
+ * @param {string} password
  * @method POST
  * @url /user/login
  */
 export const userLogin = (email: string, password: string) =>
-  api<UserAuthInput>('POST', USER_API_URL + 'login', {
+  api<UserAuthInput>('POST', USER_API_URL + '/login', {
     email,
     password,
   });
@@ -18,13 +18,13 @@ export const userLogin = (email: string, password: string) =>
 /**
  * * signup with email, password
  * @param {string} email - user email
- * @param {string} pwd - password
+ * @param {string} password - password
  * @method POST
  * @url /user/signup
  */
 
 export const userSignUp = (email: string, password: string) =>
-  api<UserAuthInput>('POST', USER_API_URL + 'signup', {
+  api<UserAuthInput>('POST', USER_API_URL + '/signup', {
     email,
     password,
   });
@@ -37,4 +37,7 @@ export const userSignUp = (email: string, password: string) =>
  */
 
 export const checkDuplicateEmail = (email: string) =>
-  api('GET', USER_API_URL + 'check/' + email);
+  api('GET', USER_API_URL + '/check/' + email);
+
+
+  //TODO add user jwt token api check,,, 1. axios interceptors?
