@@ -1,5 +1,5 @@
 import { api } from './api.common';
-const NEWS_BASE_URL = '/news';
+const NEWS_API_URL = '/news';
 
 /**
  * * get main news
@@ -9,7 +9,7 @@ const NEWS_BASE_URL = '/news';
  */
 
 export const getNews = (pageNumber: number) =>
-  api('GET', `${NEWS_BASE_URL}/popular/${pageNumber}`);
+  api('GET', `${NEWS_API_URL}/popular/${pageNumber}`);
 
 /**
  * * get news by keyword
@@ -20,7 +20,7 @@ export const getNews = (pageNumber: number) =>
  */
 
 export const getNewsByKeyword = (keywordNumber: number, pageNumber: number) =>
-  api('GET', `${NEWS_BASE_URL}/subscribe/${keywordNumber}/page/${pageNumber}`);
+  api('GET', `${NEWS_API_URL}/subscribe/${keywordNumber}/page/${pageNumber}`);
 
 /**
  * * get Recommend News by keyword
@@ -31,6 +31,6 @@ export const getNewsByKeyword = (keywordNumber: number, pageNumber: number) =>
  */
 
 export const getRecommendNews = (keywordNumber: number, pageNumber: number) =>
-  api('GET', `${NEWS_BASE_URL}/recommend/${keywordNumber}/page/${pageNumber}`);
+  api('GET', `${NEWS_API_URL}/recommend/${keywordNumber}/page/${pageNumber}`);
 
 //TODO : add new log api

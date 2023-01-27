@@ -1,13 +1,13 @@
 import { api } from './api.common';
 
-const KEYWORD_BASE_URL = '/keyword';
+const KEYWORD_API_URL = '/keyword';
 /**
  * * get subscribed keywords
  * @method GET
  * @url /keyword/subscribe
  */
 export const getSubscribeKeywords = () =>
-  api('GET', KEYWORD_BASE_URL + '/subscribe');
+  api('GET', KEYWORD_API_URL + '/subscribe');
 
 /**
  * * get ban keywords list
@@ -15,7 +15,7 @@ export const getSubscribeKeywords = () =>
  * @url /keyword/ban
  */
 
-export const getBanKeywords = () => api('GET', KEYWORD_BASE_URL + '/ban');
+export const getBanKeywords = () => api('GET', KEYWORD_API_URL + '/ban');
 
 /**
  * * get recommend keywords
@@ -23,6 +23,6 @@ export const getBanKeywords = () => api('GET', KEYWORD_BASE_URL + '/ban');
  * @url /keyword/recommend
  */
 export const getRecommendKeywords = () =>
-  api('GET', KEYWORD_BASE_URL + '/recommend');
+  api('GET', KEYWORD_API_URL + '/recommend');
 
   //todo 
