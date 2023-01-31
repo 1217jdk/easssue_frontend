@@ -1,6 +1,6 @@
 import { api } from './api.common';
 import type { UserAuthInput } from './types';
-const USER_API_URL = '/users';
+const USER_API_URL = '/user';
 
 /**
  * * login
