@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserKeywordProps} from "./types";
 import { KeywordSlider } from "./KeywordSlider";
 import { KeywordBox } from "./KeywordBox";
@@ -11,10 +11,8 @@ export const BrowserKeyword: React.FC<BrowserKeywordProps> = ({
   host,
 }) => {
   const [isHovering, setIsHovering] = useState(0);
-  const [isGoogle, setIsGoogle] = useState(false);
-  useEffect(() => {
-    setIsGoogle(host === "www.google.com");
-  });
+  const [isGoogle, setIsGoogle] = useState(host === "www.google.com");
+  
   return (
     <KeywordContainer isGoogle={isGoogle} setIsHovering={setIsHovering}>
       <KeywordSlider trend={trend} host={host} isGoogle={isGoogle} />
