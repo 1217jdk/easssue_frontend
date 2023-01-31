@@ -1,5 +1,6 @@
 import { createSlice, current, createAsyncThunk } from '@reduxjs/toolkit';
-import { login,  signUp, jwtCheck } from './api';
+import {   signUp, jwtCheck } from './api';
+import { userLogin,userSignUp } from '@/API/user';
 import axios from 'axios';
 import { LoginReq } from '@/components/user/Login';
 type loginResponse = {
@@ -23,12 +24,12 @@ const initialState : Initial = {
 
 export const loginAndSetToken = createAsyncThunk<loginResponse,LoginReq>('login', async (loginReq) => {
   const { email , pwd } = loginReq;
-  const data = await login(email, pwd);
+  const data = await userLogin(email, pwd);
   return data;
 });
 export const signUpAndSetToken = createAsyncThunk<loginResponse,LoginReq>('signup', async (signUpReq) => {
   const { email , pwd } = signUpReq;
-  const data = await signUp(email, pwd);
+  const data = await userSignUp(email, pwd);
   return data;
 });
 

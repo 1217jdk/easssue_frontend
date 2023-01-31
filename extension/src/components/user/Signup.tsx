@@ -1,5 +1,6 @@
 import React, { useState, useCallback, FunctionComponent } from "react";
-import { signUp, checkDuplicateEmail } from "@/modules/api";
+import { signUp,  } from "@/modules/api";
+import { checkDuplicateEmail } from "@/API/user"
 import { signUpAndSetToken } from "@/modules/auth";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/modules/store";
