@@ -1,17 +1,20 @@
 import { useEffect, useState, FC } from "react";
-import { NewsCard } from "../NewsCard";
 import { KeywordBar } from "../KeywordBar";
 import { RelatedKeywordBar } from "../RelatedKeywordBar";
+import { NewsContainer } from "./NewsContainer";
+import { NewsRefresh } from "./NewsRefresh";
+import { KeywordTitle } from "./KeywordTitle";
+import { NewsGrid } from './NewsGrid';
 import {
   getNews,
   getKeyWordNews,
   getRecommendNews,
   getRecommendKeywords,
 } from "@/modules/api";
-import { newsBoardProps, newsResponse } from "./types";
+import { NewsBoardProps, NewsResponse } from "./types";
 import { useSelector } from "react-redux";
 import { RootState } from "@/modules/store";
-export const NewsBoard: FC<newsBoardProps> = ({ setKeywordModalOpen }) => {
+export const NewsBoard: FC<NewsBoardProps> = ({ setKeywordModalOpen }) => {
   const [subSelect, setSubSelect] = useState(-1);
   const [relSelect, setRelSelect] = useState(-1);
   const [keywordTitle, setKeywordTitle] = useState("인기 & 추천");
@@ -19,13 +22,11 @@ export const NewsBoard: FC<newsBoardProps> = ({ setKeywordModalOpen }) => {
   const [pageNum, setPageNum] = useState(0);
   const [relList, setRelList] = useState([{ kwdName: "인기" }]);
   const [recommendList, setRecommendList] = useState([{ kwdName: "인기" }]);
-  const [newsObject, setNewsObject] = useState<newsResponse>({
+  const [newsObject, setNewsObject] = useState<NewsResponse>({
     page: 0,
     last: false,
     newsList: [],
   });
-  const keywords = ["인기", "네이버", "비트코인", "이청아", "제페토"];
-  const userKeywords = ["SSAFY", "카카오", "메타버스", "남궁민", "블록체인"];
   const { subScribeKwdList } = useSelector((state: RootState) => {
     return {
       subScribeKwdList: state.persistedReducer.keyWordReducer.subScribeKwdList,
@@ -55,9 +56,6 @@ export const NewsBoard: FC<newsBoardProps> = ({ setKeywordModalOpen }) => {
       fetchRelArticle(pageNum);
     }
   }, [pageNum]);
-  const onPageClick = () => {
-    setPageNum((pageNum + 1) % 10);
-  };
   const fetchArticle = (pageNum: number) => {
     if (subSelect === -1) {
       getNews(pageNum).then((data) => {
@@ -110,7 +108,7 @@ export const NewsBoard: FC<newsBoardProps> = ({ setKeywordModalOpen }) => {
     }
   };
   return (
-    <div>
+    <>
       <KeywordBar
         keywordList={subScribeKwdList}
         subSelect={subSelect}
@@ -119,32 +117,16 @@ export const NewsBoard: FC<newsBoardProps> = ({ setKeywordModalOpen }) => {
         setKeywordId={setKeywordId}
         setKeywordModalOpen={setKeywordModalOpen}
       />
-      <div className="bg-black/25 rounded-lg my-4 mx-2 p-4 relative">
-        <div className="text-white mx-2 text-2xl">{keywordTitle}</div>
-        <div>
-          <RelatedKeywordBar
-            keywordList={relList}
-            relSelect={relSelect}
-            setRelSelect={setRelSelect}
-          />
-          <button className="mx-2 absolute top-4 right-2" onClick={onPageClick}>
-            <img
-              className="m-auto"
-              style={{ width: 28, height: 28 }}
-              src="refresh.svg"
-            />
-          </button>
-        </div>
-        <div className="grid grid-cols-3 gap-4">
-          {newsObject.newsList.map((list, index) => {
-            return (
-              <div key={index}>
-                <NewsCard newsList={list} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+      <NewsContainer>
+        <KeywordTitle title={keywordTitle} />
+        <RelatedKeywordBar
+          keywordList={relList}
+          relSelect={relSelect}
+          setRelSelect={setRelSelect}
+        />
+        <NewsRefresh pageNum={pageNum} setPageNum={setPageNum} />
+        <NewsGrid newsObject={newsObject} />
+      </NewsContainer>
+    </>
   );
 };
