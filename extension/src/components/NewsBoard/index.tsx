@@ -1,6 +1,6 @@
 import { useEffect, useState, FC } from "react";
-import { KeywordBar } from "../KeywordBar";
-import { RelatedKeywordBar } from "../RelatedKeywordBar";
+import { KeywordBar } from './KeywordBar';
+import { RelatedKeywordBar } from './RelatedKeywordBar';
 import { NewsContainer } from "./NewsContainer";
 import { NewsRefresh } from "./NewsRefresh";
 import { KeywordTitle } from "./KeywordTitle";

@@ -1,4 +1,4 @@
-import { NewsKeyword } from "../NewsKeyword";
+import { NewsKeyword } from './NewsKeyword';
 import { NewsKeywordBarProps } from "./types";
 import React from "react";
 export const NewsKeywordBar: React.FC<NewsKeywordBarProps> = ({
