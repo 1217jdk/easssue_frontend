@@ -8,12 +8,29 @@ type News = {
   img: string;
 };
 
-export interface newsResponse {
+export interface NewsResponse {
   page: number;
   last: boolean;
   newsList: News[];
 }
 
-export interface newsBoardProps {
+export interface NewsBoardProps {
   setKeywordModalOpen: Function;
+}
+
+export interface NewsContainerProps {
+  children: React.ReactNode;
+}
+
+export interface KeywordTitleProps {
+  title: string;
+}
+
+export interface NewsRefreshProps {
+  pageNum: number;
+  setPageNum: Function;
+}
+
+export interface NewsGridProps {
+  newsObject: NewsResponse;
 }

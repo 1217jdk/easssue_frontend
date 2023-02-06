@@ -14,7 +14,27 @@ export interface KeywordResponse {
   [k: number]: keyword;
 }
 
-export interface BrowserKeywordProp {
+export interface KeywordSliderProps {
+  trend: string[];
+  host: string;
+  isGoogle: Boolean;
+}
+
+export interface KeywordBoxProps {
+  trend: string[];
+  host: string;
+  isGoogle: Boolean;
+  isHovering: number;
+  setIsHovering: Function;
+}
+
+export interface KeywordContainerProps {
+  children: React.ReactNode;
+  isGoogle: Boolean;
+  setIsHovering: Function;
+}
+
+export interface BrowserKeywordProps {
   trend: string[];
   host: string;
 }
