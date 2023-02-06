@@ -16,11 +16,8 @@ import { SettingModal } from '@/components/SettingModal';
 import { DashboardModal } from '@/components/DashboardModal';
 import { KeywordModal } from '@/components/KeywordModal';
 
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query';
+//react query
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 //api
 import axios from 'axios';
@@ -148,15 +145,6 @@ const App: React.FC<{}> = () => {
           isLogin={isLogin}
         ></KeywordModal>
       )}
-      {/* <button onClick={async()=>{
-        try {
-          await newsLogApi(1)
-        } catch (error) {
-          
-        }
-      }}>
-        뉴스로그 증가
-              </button> */}
     </>
   );
 };
