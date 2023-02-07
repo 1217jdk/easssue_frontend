@@ -5,11 +5,11 @@ const NEWS_API_URL = '/news';
  * * get main news
  * @param {number} pageNumber
  * @method GET
- * @url /news/popular/{pageNumber}
+ * @url /news/popular/v2/page/{pageNumber}
  */
 
 export const getNews = (pageNumber: number) =>
-  api('GET', `${NEWS_API_URL}/popular/page/${pageNumber}`);
+  api('GET', `${NEWS_API_URL}/popular/v2/page/${pageNumber}`);
 
 /**
  * * get news by keyword
