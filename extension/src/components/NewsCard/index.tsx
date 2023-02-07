@@ -1,9 +1,9 @@
-import { NewsKeywordBar } from "../NewsKeywordBar";
-import React, { useState } from "react";
-import { NewsCardProps } from "./types";
-import { newsLogApi } from "@/modules/api";
-import "moment/locale/ko";
-import moment from "moment";
+import { NewsKeywordBar } from '../NewsKeywordBar';
+import React, { useState } from 'react';
+import { NewsCardProps } from './types';
+import { newsLogApi } from '@/modules/api';
+import 'moment/locale/ko';
+import moment from 'moment';
 
 export const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {
   const [isHovering, setIsHovering] = useState(0);
