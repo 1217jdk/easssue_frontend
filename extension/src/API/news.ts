@@ -9,7 +9,7 @@ const NEWS_API_URL = '/news';
  */
 
 export const getNews = (pageNumber: number) =>
-  api('GET', `${NEWS_API_URL}/popular/${pageNumber}`);
+  api('GET', `${NEWS_API_URL}/popular/page/${pageNumber}`);
 
 /**
  * * get news by keyword
