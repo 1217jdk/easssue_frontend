@@ -12,7 +12,7 @@ const USER_API_URL = '/user';
 export const userLogin = (email: string, password: string) =>
   api<UserAuthInput>('POST', USER_API_URL + '/login', {
     email,
-    password,
+    pwd : password,
   });
 
 /**
@@ -23,11 +23,11 @@ export const userLogin = (email: string, password: string) =>
  * @url /user/signup
  */
 
-export const userSignUp = (email: string, password: string) =>
+export const userSignUp = (email: string, pwd: string) =>
   api<UserAuthInput>('POST', USER_API_URL + '/signup', {
     email,
-    password,
-  });
+    pwd,
+  })
 
 /**
  * * email duplication check at signup
