@@ -266,7 +266,7 @@ export const searchKeyword = async (value: string) => {
 export const getNews = async (pageNumber: number) => {
   try {
     const { data }= await axios({
-      url: BASE_URL + `/news/popular/v2/page/${pageNumber}`,
+      url: BASE_URL + `/news/popular/v3/page/${pageNumber}`,
     });
     return data;
   } catch (error) {

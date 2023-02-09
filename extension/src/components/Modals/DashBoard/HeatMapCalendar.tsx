@@ -20,7 +20,7 @@ const HeatMapCalendar: FC<GrassType> = ({ startDate, endDate, values }) => {
   useEffect(() => {
     const getNewsHistoryApi = async () => {
       const now = new Date();
-      const getToday = `${now.getFullYear()}-${now.getMonth() + 1}-${
+      const getToday = `${now.getFullYear()}-0${now.getMonth() + 1}-${
         now.getDate() < 10 ? `0${now.getDate()}` : now.getDate()
       }`;
       const korDate =

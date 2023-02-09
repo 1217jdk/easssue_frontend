@@ -29,6 +29,7 @@ export const loginAndSetToken = createAsyncThunk<loginResponse,LoginReq>('login'
 });
 export const signUpAndSetToken = createAsyncThunk<loginResponse,LoginReq>('signup', async (signUpReq) => {
   const { email , pwd } = signUpReq;
+  console.log(email, pwd);
   const data = await userSignUp(email, pwd);
   return data;
 });

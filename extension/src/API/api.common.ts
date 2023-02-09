@@ -11,7 +11,7 @@ export const api = async <BodyType,>( method : string, url : string, body?: Body
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
-      alert(error.response?.data);
+      alert(error.response?.data?.message || error.message);
       return error;
     }
     return error;

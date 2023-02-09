@@ -5,6 +5,7 @@ import { newsLogApi } from "@/modules/api";
 import "moment/locale/ko";
 import moment from "moment";
 
+
 export const NewsCard: React.FC<NewsCardProps> = ({ newsList }) => {
   const [isHovering, setIsHovering] = useState(0);
   const onClickLog = () => {
