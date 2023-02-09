@@ -73,6 +73,7 @@ const App: React.FC<{}> = () => {
       // return jwtStatus.data;
     };
     getInitialData();
+    console.log(isLogin);
   }, []);
   const fetchBookmarks = () => {
     chrome.bookmarks.getChildren('1', (bookmarkTreeNodes) => {
@@ -154,10 +155,10 @@ document.body.appendChild(container);
 const root = createRoot(container);
 root.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <PersistGate loading={null} persistor={persistor}>
         <App />
-      </QueryClientProvider>
-    </PersistGate>
+      </PersistGate>
+    </QueryClientProvider>
   </Provider>
 );

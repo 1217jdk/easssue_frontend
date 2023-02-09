@@ -5,20 +5,20 @@ const USER_API_URL = '/user';
 /**
  * * login
  * @param {string} email
- * @param {string} password
+ * @param {string} pwd
  * @method POST
  * @url /user/login
  */
-export const userLogin = (email: string, password: string) =>
+export const userLogin = (email: string, pwd: string) =>
   api<UserAuthInput>('POST', USER_API_URL + '/login', {
     email,
-    pwd : password,
+    pwd,
   });
 
 /**
  * * signup with email, password
  * @param {string} email - user email
- * @param {string} password - password
+ * @param {string} pwd - password
  * @method POST
  * @url /user/signup
  */
