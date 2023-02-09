@@ -1,4 +1,4 @@
-import { NewsKeywordBar } from "../NewsKeywordBar";
+import { NewsKeywordBar } from './NewsKeywordBar';
 import React, { useState } from "react";
 import { NewsCardProps } from "./types";
 import { newsLogApi } from "@/modules/api";

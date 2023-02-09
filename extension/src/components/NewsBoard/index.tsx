@@ -1,16 +1,12 @@
 import { useEffect, useState, FC } from "react";
-import { KeywordBar } from "../KeywordBar";
-import { RelatedKeywordBar } from "../RelatedKeywordBar";
+import { KeywordBar } from "./KeywordBar";
+import { RelatedKeywordBar } from "./RelatedKeywordBar";
 import { NewsContainer } from "./NewsContainer";
 import { NewsRefresh } from "./NewsRefresh";
 import { KeywordTitle } from "./KeywordTitle";
-import { NewsGrid } from './NewsGrid';
-import {
-  getNews,
-  getKeyWordNews,
-  getRecommendNews,
-  getRecommendKeywords,
-} from "@/modules/api";
+import { NewsGrid } from "./NewsGrid";
+import { getNews, getNewsByKeyword, getRecommendNews } from "@/API/news";
+import { getRecommendKeywords } from "@/API/keyword.api";
 import { NewsBoardProps, NewsResponse } from "./types";
 import { useSelector } from "react-redux";
 import { RootState } from "@/modules/store";
@@ -69,7 +65,7 @@ export const NewsBoard: FC<NewsBoardProps> = ({ setKeywordModalOpen }) => {
         setRelSelect(-1);
       });
     } else {
-      getKeyWordNews(subSelect, pageNum).then((data) => {
+      getNewsByKeyword(subSelect, pageNum).then((data) => {
         if (data.newsList.length === 0) {
           setPageNum(0);
         }
@@ -91,7 +87,7 @@ export const NewsBoard: FC<NewsBoardProps> = ({ setKeywordModalOpen }) => {
           setRelSelect(-1);
         });
       } else {
-        getKeyWordNews(subSelect, pageNum).then((data) => {
+        getNewsByKeyword(subSelect, pageNum).then((data) => {
           if (data.newsList.length === 0) {
             setPageNum(0);
           }

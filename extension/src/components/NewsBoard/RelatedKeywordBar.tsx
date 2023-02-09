@@ -1,4 +1,4 @@
-import { RelatedKeywordButton } from "../RelatedKeywordButton";
+import { RelatedKeywordButton } from './RelatedKeywordButton';
 import { RelatedKeywordBarProps } from "./types";
 import React from "react";
 export const RelatedKeywordBar: React.FC<RelatedKeywordBarProps> = ({

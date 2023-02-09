@@ -34,3 +34,46 @@ export interface NewsRefreshProps {
 export interface NewsGridProps {
   newsObject: NewsResponse;
 }
+
+export interface KeywordBarProps {
+  keywordList: { kwdId: number; kwdName: string }[];
+  subSelect: number;
+  setSubSelect: Function;
+  setKeywordTitle: Function;
+  setKeywordId: Function;
+  setKeywordModalOpen: Function;
+}
+
+export interface NewsCardProps {
+  newsList: News;
+}
+
+export interface NewsKeywordBarProps {
+  keywordList: string[];
+}
+
+export interface NewsKeywordProps {
+  content: string;
+}
+
+export interface KeywordButtonProps {
+  content: string;
+  setSubSelect: Function;
+  setKeywordTitle: Function;
+  setKeywordId: Function;
+  subSelect: number;
+  index: number;
+}
+
+export interface RelatedKeywordBarProps {
+  keywordList: any;
+  relSelect: number;
+  setRelSelect: Function;
+}
+
+export interface RelatedKeywordButtonProps {
+  content: string;
+  setRelSelect: Function;
+  relSelect: number;
+  index: number;
+}

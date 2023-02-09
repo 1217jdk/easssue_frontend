@@ -1,6 +1,6 @@
 import React from "react";
 import { NewsGridProps } from "./types";
-import { NewsCard } from '../NewsCard';
+import { NewsCard } from './NewsCard';
 
 export const NewsGrid: React.FC<NewsGridProps> = ({ newsObject }) => {
   return (

@@ -1,4 +1,4 @@
-import { KeywordButton } from "../KeywordButton";
+import { KeywordButton } from './KeywordButton';
 import { KeywordBarProps } from "./types";
 import React from "react";
 export const KeywordBar: React.FC<KeywordBarProps> = ({
